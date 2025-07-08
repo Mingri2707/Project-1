@@ -9,6 +9,17 @@ body {
   font-size: 1.6rem;
   font-family: Alata, sans-serif;
 }
+@keyframes dropdown-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* =================common=============== */
 a {
   text-decoration: none;
@@ -29,18 +40,12 @@ body {
   margin-left: 8px;
 }
 .main-content {
-  max-width: 1300px;
+  max-width: 1400px;
   width: 100%;
   padding: 0 16px;
   /* max-width: calc(100% - 48px); */
   margin-left: auto;
   margin-right: auto;
-}
-.line-clamp {
-  display: -webkit-box;
-  -webkit-line-clamp: var(--line-clamp, 1);
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 /* =================header=============== */
 .header {
@@ -66,7 +71,7 @@ body {
 .nav a {
   position: relative;
   color: white;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   padding: 0px 16px;
 }
 .nav ul {
@@ -108,14 +113,9 @@ body {
 }
 
 .nav li.dropdown a i {
-  margin-left: 4px;
+  padding-left: 10px;
   font-size: 1rem;
   vertical-align: middle;
-}
-.nav li.dropdown a {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
 }
 .nav .menu {
   position: absolute; /* Đặt .menu nằm tuyệt đối bên trong thẻ li cha. */
@@ -124,15 +124,20 @@ body {
   background: rgb(238, 233, 233);
   padding: 10px;
   display: none;
-  min-width: 400px; /* Chiều rộng tối thiểu */
+  min-width: 450px; /* Chiều rộng tối thiểu */
   width: fit-content; /* Tự mở rộng theo nội dung */
   max-width: 100%; /* Không vượt quá khung cha */
-  max-height: 120px;
+  max-height: 170px;
   min-height: 70px;
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   z-index: 100;
+}
+
+.nav li.dropdown:hover > .menu {
+  display: block;
+  animation: dropdown-fade-in 0.4s ease forwards; /*tốc độ trượt xuống của menu */
 }
 .menu .sub-menu {
   display: grid;
@@ -146,28 +151,19 @@ body {
   list-style: none;
   color: black;
   white-space: nowrap;
-  width: 100px;
+  width: 130px;
   display: block; /* hoặc inline-block */
   text-overflow: ellipsis;
   overflow: hidden;
   line-height: 1.7;
 }
-.nav .menu::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid red;
-  z-index: 101;
+.nav li.dropdown {
+  position: relative;
 }
 li:hover > .menu {
   /*khi di chuột vào sẽ hiển thị phần tử con trực tiếp của li */
   display: block;
 }
-
 .menu ul li a:hover {
   opacity: 0.7;
 }
@@ -224,4 +220,11 @@ li:hover > .menu {
 }
 .search-box input:focus::placeholder {
   color: white;
+}
+/* =====================Hero====================== */
+.hero .main-content {
+  margin-top: 16px;
+  width: 1400px;
+  height: 5000px;
+  background: black;
 }
